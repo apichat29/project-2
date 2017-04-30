@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Up2U company</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+
+    <head>
+<style>
+body {
+    background-image: url("image/up2u7.jpg");
+}
+</style>
+</head>
+
+
+     <div class="container">
+      <h1><i class="material-icons">home</i> New Member Registration for Up2U company </h1>
+      <form class="" action="#" method="post">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="">
+          <p class="help-block"></p>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="">
+          <p class="help-block"></p>
+        </div>
+        <div class="form-group">
+          <label for="fname">First name</label>
+          <input type="text" class="form-control" id="fname" placeholder="">
+          <p class="help-block"></p>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last name</label>
+          <input type="text" class="form-control" id="lname" placeholder="">
+          <p class="help-block"></p>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" placeholder="">
+          <p class="help-block"></p>
+        </div>
+        <div class="form-group">
+          <label for="tel">Telephone</label>
+          <input type="text" class="form-control" id="tel" placeholder="">
+          <p class="help-block"></p>
+        </div>
+        <button type="button" id="signup" name="button" class="btn btn-primary">Register</button>
+        <button type="button" id="home" class="btn btn-success" name="button">Home</button>
+      </form>
+     </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+     $("#home").click(function() {
+        //Redirect to Signup page
+        window.location.href = "index.html";
+    });
+      $("#signup").click(function() {
+        //Get new data from form elements and store in newuser object
+        var newuser = { };
+        newuser.username = $("#username").val();
+        newuser.password = $("#password").val();
+        newuser.firstname = $("#fname").val();
+        newuser.lastname = $("#lname").val();
+        newuser.email = $("#email").val();
+        newuser.tel = $("#tel").val();
+
+        console.log(newuser);
+        //Create url for insert new member
+        var url = "http://membershipwebapi977290.azurewebsites.net/api/Members";
+        //Call the Web Api with POST method to insert new member
+        $.post(url, newuser, function(data, status) {
+          console.log("Inserted " + data);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Up2U company</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <body>
+          <head>
+      <style>
+      body {
+          background-image: url("image/up2u2.jpg");
+      }
+      </style>
+      </head>
+
+
+    <div class="container">
+    <h1>Sign in</h1>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+        <h3 class="panel-title">Sign in Up2U company</h3>
+      </div>
+
+      <div class="panel-body">
+        <form class="" action="#" method="post">
+          <div class="form-group">
+            <i class="material-icons">perm_identity</i>
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="">
+            <p class="help-block"></p>
+          </div>
+          <div class="form-group">
+            <i class="material-icons">person</i>
+            <label for="passoword">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="">
+            <p class="help-block"></p>
+          </div>
+          <div class="form-group">
+            <button type="button" id="signin" class="btn btn-primary" name="button">Sign In</button>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer"></div>
+    </div>
+    <div id="err" style="display:none" class="alert alert-danger alert-dismissable fade in">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>
+      <strong>Incorrect username or password</strong>
+      Please check your password.
+    </div>
+    <h1>Sign up for a new user</h1>
+      <button type="button" id="home" class="btn btn-success" name="button">Home</button>
+      <button type="button" id="signup" class="btn btn-success" name="button">Sign Up</button>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+      $("#signup").click(function() {
+          //Redirect to Signup page
+          window.location.href = "signup.html";
+      });
+      $("#home").click(function() {
+          //Redirect to Signup page
+          window.location.href = "index.html";
+      });
+
+      $("#signin").click(function() {
+        //Set a url of password verification api
+        var url = "http://membershipwebapi977290.azurewebsites.net/api/Members/signin?";
+        //Create a url contains username & password as querystring parameters
+        url += "username=" + $("#username").val();
+        url += "&password=" + $("#password").val();
+        console.log(url);
+        //Call the REST Api to verify username/password
+        $.get(url, function(data, status) {
+          console.log(data);
+          //Check if username & password are corrected
+          if(data.Status == true){
+            //Goto User's info page
+            window.location.href = "userinfo.html?id=" + data.CurrentUser.Id;
+          }else{
+            //Show error message
+            $("#err").show();
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>
